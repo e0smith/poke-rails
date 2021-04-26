@@ -1,7 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'pry'
+require './app/models/pokemon'
+require 'httparty'
+def fetch_pokemon
+    url = "https://pokeapi.co/api/v2/pokemon?limit=10000"
+    response = HTTParty.get(url)
+    new_response = response.parsed_response
+    fetch_abilities(response["results"])
+end
+
+def fetch_abilities(results)
+    results.each do |x|
+        Pokemon.create(name: x["name"], url: x["url"])
+    end
+end
+
+fetch_pokemon

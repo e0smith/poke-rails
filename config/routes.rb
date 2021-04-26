@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   post '/logout', to: 'sessions#destroy'
 
-
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
+
+  get '/pokedex', to: 'pokemons#pokedex'
+  get '/pokedex/:id', to: 'pokemons#info'
 end
