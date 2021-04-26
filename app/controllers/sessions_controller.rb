@@ -5,22 +5,26 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @user = User.find_by_email(params[:user][:email])
-        
+        @user = User.find_by(params[:username])
         if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id
+            render 'users/show'
         else
-            flash[:message] = "Invalid email or password"
             render :new
         end
     end
 
+    def destroy
+        session.clear
+        render :'welcome/home'
+    end
 
     def omniauth
       @user = User.find_or_create_by(uid: auth['uid']) do |u|
-        u.name = auth['info']['name']
-        u.email = auth['info']['email']
-        u.image = auth['info']['image']
+        u.name = auth[:info][:name]
+        u.email = auth[:info][:email]
+        u.image = auth[:info][:image]
+        u.uid = auth[:uid]
         u.provider = auth[:provider]
         u.password = SecureRandom.hex(10)
       end
@@ -28,10 +32,6 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
   
       render 'welcome/home'
-    end
-
-    def failure
-        redirect_to :root
     end
   
     private

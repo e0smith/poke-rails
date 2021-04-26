@@ -1,6 +1,7 @@
 <h1> CURRENT TESTING PAGE</h1>
-You should have been brought here after creating an account. The user homepage has not been created yet
 
+<br><%= button_to 'Log in with Google!', "/auth/google_oauth2", method: "post" %><br>
 
-
-<%= link_to 'Log in with Google!', "/auth/google_oauth2/callback", method: "post" %>
+<%= button_to 'Login', '/login', method: "get" %><br>
+<%= button_to 'Signup', '/signup', method: "get" %><br>
+<%= button_to 'Logout', '/logout', method: "get"  %>
