@@ -5,9 +5,17 @@ class SessionsController < ApplicationController
     end
 
     def create
+        @user = User.find_by_email(params[:user][:email])
+        
+        if @user && @user.authenticate(params[:user][:password])
+            session[:user_id] = @user.id
+        else
+            flash[:message] = "Invalid email or password"
+            render :new
+        end
     end
 
-    
+
     def omniauth
       @user = User.find_or_create_by(uid: auth['uid']) do |u|
         u.name = auth['info']['name']
