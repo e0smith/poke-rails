@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :team_pokemons
   resources :pokemons
   resources :teams
   resources :users

@@ -1,0 +1,2 @@
+class TeamPokemonsController < ApplicationController
+end
