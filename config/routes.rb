@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :team_pokemons
   resources :pokemons, only: [:index, :show]
-  resources :teams
+  resources :teams, only: [:index, :show, :new, :create, :edit, :destroy]
   resources :users
   root 'welcome#home'
 
