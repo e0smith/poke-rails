@@ -4,4 +4,4 @@ class WelcomeController < ApplicationController
         @user = User.find(session[:user_id])
       end
     end
-  end
+end

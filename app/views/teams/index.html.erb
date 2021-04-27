@@ -5,6 +5,6 @@
 <br>
 <br>
 <% @team.each do |x| %>
-<%= button_to "#{x.team_name}", "/teams/#{:id}", method: "get" %> 
+<%= button_to "#{x.team_name}", "/teams/#{x[:id]}", method: "get" %>
+<%= button_to 'Delete Team', "/teams/#{x[:id]}", method: "delete" %>
 <% end%>
-
