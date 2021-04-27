@@ -4,7 +4,7 @@
 <%= button_to "Create a new team", "/teams/new", method: "get" %>
 <br>
 <br>
-<% @teams.each do |x| %>
-<%= button_to "#{x.team_name}", "/teams/#{team.id}", method: "get" %> 
+<% @team.each do |x| %>
+<%= button_to "#{x.team_name}", "/teams/#{:id}", method: "get" %> 
 <% end%>
 
