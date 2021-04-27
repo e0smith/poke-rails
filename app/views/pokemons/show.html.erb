@@ -5,4 +5,9 @@ Types: <%=@info["types"].join(", ")%>
 Abilities: <%=@info["abilities"].map {|x| x.capitalize}.join(", ") %>
 <br>
 <br>
-Moves: <%=@info["moves"].map {|x| x.capitalize}.join(", ") %>
+Moves: <%=@info["moves"].map {|x| x.capitalize}.join(", ") %> 
+<br>
+<br>
+<br>
+
+<%= button_to 'Back to Pokedex', '/pokemons', method: "get" %>
