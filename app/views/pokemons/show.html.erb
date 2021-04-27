@@ -1,0 +1,8 @@
+<h1> <%=@info["name"].first.capitalize %> </h1>
+Types: <%=@info["types"].join(", ")%>
+<br>
+<br>
+Abilities: <%=@info["abilities"].map {|x| x.capitalize}.join(", ") %>
+<br>
+<br>
+Moves: <%=@info["moves"].map {|x| x.capitalize}.join(", ") %>

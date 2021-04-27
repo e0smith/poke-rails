@@ -5,5 +5,6 @@ class PokemonsController < ApplicationController
     end
 
     def show
+        @info = Pokemon.pokemon_data(params[:id])
     end
 end
