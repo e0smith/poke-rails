@@ -2,8 +2,9 @@ class TeamsController < ApplicationController
     include UsersHelper
     def index
         if @user = User.find_by(params[:username])
-            @team = @user.teams.all
-            
+            if @user = current_user
+                @team = @user.teams.all
+            end
         end
     end
 
