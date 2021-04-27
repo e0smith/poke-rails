@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :team_pokemons
-  resources :pokemons
+  resources :pokemons, only: [:index, :show]
   resources :teams
   resources :users
   root 'welcome#home'
@@ -16,6 +16,6 @@ Rails.application.routes.draw do
 
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
 
-  get '/pokedex', to: 'pokemons#pokedex'
-  get '/pokedex/:id', to: 'pokemons#info'
+  resources :pokemons, only: [:index, :show]
+ 
 end

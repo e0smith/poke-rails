@@ -1,0 +1,7 @@
+<h1> PokeDex </h1>
+<br>
+<% @pokemons.each do |pokemon| %>
+    <li>
+        <%= link_to pokemon.name.capitalize, "/pokemons/#{pokemon.id}" %>
+    </li>
+<% end %>

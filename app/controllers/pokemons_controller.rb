@@ -1,10 +1,9 @@
 class PokemonsController < ApplicationController
 
-    def pokedex
+    def index
         @pokemons = Pokemon.all
-        render 'pokemons/pokedex/index'
     end
 
-    def info
+    def show
     end
 end
