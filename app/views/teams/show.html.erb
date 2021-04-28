@@ -1,0 +1,4 @@
+<h1> Your Team </h1>
+<% @pokemon.each do |pokemon| %>
+<%= render partial: 'pokemons/pokemon_list', locals: {pokemon: pokemon} %>
+<% end %>

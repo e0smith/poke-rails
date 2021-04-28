@@ -6,8 +6,10 @@
     <%= f.text_field :team_name %>
     <br>
     <br>
-    <%= f.submit %>
-<% end%>
-
-<%= render partial: 'pokemons/pokemon_list'%>
-
+<%= f.submit %>
+<ul>
+<%= collection_check_boxes(:team, :pokemon_ids, Pokemon.all, :id, :name) do |b| %>
+<%= content_tag :li, b.label{b.check_box + b.text}, class: "checkbox-wrap" %>
+<% end %>
+</ul>
+<% end %>

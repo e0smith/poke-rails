@@ -12,6 +12,8 @@ class TeamsController < ApplicationController
     end
 
     def show
+        @pokemon = current_user.teams.find(params[:id]).pokemons
+        @id = params[:id]
     end
 
     def new
@@ -21,7 +23,10 @@ class TeamsController < ApplicationController
     def create
         @team = Team.new(team_params)
         @team.user_id = current_user.id
-        if @team.save
+        # @teampokemon = TeamPokemon.new(teampokemon_params)
+        # @teampokemon.team_id = @team.id
+        # @teampokemon.pokemon_id << @pokemon.id
+        if @team.save #&& @teampokemon.save
             flash[:message] = "Team Successfuly Created!"
             redirect_to :teams
         else
@@ -38,7 +43,6 @@ class TeamsController < ApplicationController
 
     private
     def team_params
-        params.require(:team).permit(:team_name, :user_id, :id)
+        params.require(:team).permit(:team_name, :user_id, :id, pokemon_ids: [])
     end
-
 end
