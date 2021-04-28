@@ -1,6 +1,9 @@
 class TeamsController < ApplicationController
     include UsersHelper
+    include PokemonsHelper
     def index
+        redirect_if_not_logged_in
+        
         if @user = User.find_by(params[:username])
             if @user = current_user
                 @team = @user.teams.all
@@ -37,4 +40,5 @@ class TeamsController < ApplicationController
     def team_params
         params.require(:team).permit(:team_name, :user_id, :id)
     end
+
 end

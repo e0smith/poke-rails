@@ -1,7 +1,8 @@
 class PokemonsController < ApplicationController
-
+    include PokemonsHelper
+    
     def index
-        @pokemons = Pokemon.all
+        pokemons
     end
 
     def show

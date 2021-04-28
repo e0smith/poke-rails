@@ -3,5 +3,4 @@ class Team < ApplicationRecord
     has_many :team_pokemon
     has_many :pokemons, through: :team_pokemon
 
-    TEAM = []
 end
