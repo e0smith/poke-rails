@@ -8,4 +8,5 @@ class PokemonsController < ApplicationController
     def show
         @info = Pokemon.pokemon_data(params[:id])
     end
+    
 end

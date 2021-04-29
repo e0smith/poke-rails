@@ -12,8 +12,8 @@ class TeamsController < ApplicationController
     end
 
     def show
-        @pokemon = current_user.teams.find(params[:id]).pokemons
-        @id = params[:id]
+        @team = Team.find(params[:id])
+        @pokemon = @team.pokemons
     end
 
     def new
@@ -35,7 +35,7 @@ class TeamsController < ApplicationController
     def destroy
         @team = Team.find(params[:id])
         @team.destroy
-        redirect_to :teams
+        redirect_back(fallback_location: root_path)
     end
 
     private
