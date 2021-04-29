@@ -1,4 +1,7 @@
 <h1> Your Team </h1>
+<br>
+<%= button_to "Back", "../teams", method: "get" %>
+<br>
 <% @pokemon.each do |pokemon| %>
 <%= render partial: 'pokemons/pokemon_list', locals: {pokemon: pokemon} %>
 <% end %>

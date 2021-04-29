@@ -23,10 +23,7 @@ class TeamsController < ApplicationController
     def create
         @team = Team.new(team_params)
         @team.user_id = current_user.id
-        # @teampokemon = TeamPokemon.new(teampokemon_params)
-        # @teampokemon.team_id = @team.id
-        # @teampokemon.pokemon_id << @pokemon.id
-        if @team.save #&& @teampokemon.save
+        if @team.save
             flash[:message] = "Team Successfuly Created!"
             redirect_to :teams
         else

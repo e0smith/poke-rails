@@ -14,4 +14,6 @@ def fetch_abilities(results)
     end
 end
 
+def fetch_pokemon_type
+end
 fetch_pokemon

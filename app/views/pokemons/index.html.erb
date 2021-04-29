@@ -1,5 +1,7 @@
 <h1> PokeDex </h1>
 <br>
+<%= button_to "Home", "users", method: "get" %>
+<br>
 <% pokemons.each do |pokemon| %>
 <%= render partial: 'pokemon_list', locals: {pokemon: pokemon} %>
 <% end %>

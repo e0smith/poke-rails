@@ -1,12 +1,13 @@
 <h1> Your Teams</h1>
 <br>
 <br>
-<%= button_to "Home", "/users/show", method: "get" %>
+<%= button_to "Home", "users", method: "get" %>
 <br>
 <%= button_to "Create a new team", "/teams/new", method: "get" %>
 <br>
 <br>
 <% @team.each do |x| %>
 <%= button_to "#{x.team_name}", "/teams/#{x[:id]}", method: "get" %>
-<%= button_to 'Delete Team', "/teams/#{x[:id]}", method: "delete" %>
+<br>
+<%= link_to 'Delete Team', "/teams/#{x[:id]}", method: "delete" %>
 <% end%>
