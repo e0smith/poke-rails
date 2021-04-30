@@ -4,15 +4,15 @@ class TeamsController < ApplicationController
     def index
         redirect_if_not_logged_in
         
-        if @user = User.find_by(params[:username])
-            if @user = current_user
-                @team = @user.teams.all
+        if @user = User.find_by(params[:id])
+            if current_user == @user
+                @team = current_user.teams.all
             end
         end
     end
 
     def show
-        @team = Team.find(params[:id])
+        @team = User.teams.find(params[:id])
         @pokemon = @team.pokemons
     end
 

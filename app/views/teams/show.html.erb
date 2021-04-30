@@ -4,9 +4,7 @@
 <br>
 <% @pokemon.each do |pokemon| %>
     <li>
-        <%%>
         <%= link_to pokemon.name.capitalize, "/pokemons/#{pokemon.id}" %>
         <%= link_to "Delete", team_pokemon_path(TeamPokemon.find_by(pokemon_id: pokemon.id, team_id: @team.id)), method: :delete%>
     </li>
-
 <% end %>

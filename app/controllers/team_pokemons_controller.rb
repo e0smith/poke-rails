@@ -8,4 +8,9 @@ class TeamPokemonsController < ApplicationController
         end
         redirect_back(fallback_location: root_path)
     end
+
+    private
+    def teampokemon_params
+        params.require(:team_pokemons).permit(:nickname)
+    end 
 end
