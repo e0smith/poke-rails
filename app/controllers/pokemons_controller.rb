@@ -9,4 +9,5 @@ class PokemonsController < ApplicationController
         @info = Pokemon.pokemon_data(params[:id])
     end
     
+    
 end

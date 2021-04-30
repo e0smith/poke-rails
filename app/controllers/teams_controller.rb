@@ -3,21 +3,21 @@ class TeamsController < ApplicationController
     include PokemonsHelper
     def index
         redirect_if_not_logged_in
-        
-        if @user = User.find_by(params[:id])
-            if current_user == @user
-                @team = current_user.teams.all
-            end
-        end
+
+        @team = current_user.teams
     end
 
     def show
-        @team = User.teams.find(params[:id])
-        @pokemon = @team.pokemons
+        @team = current_user.teams.find(params[:id])
+        
     end
 
     def new
         @team = Team.new
+
+        6.times do 
+            @team.team_pokemons.build
+        end
     end
 
     def create
@@ -40,6 +40,6 @@ class TeamsController < ApplicationController
 
     private
     def team_params
-        params.require(:team).permit(:team_name, :user_id, :id, pokemon_ids: [])
+        params.require(:team).permit(:team_name, :user_id, :id, team_pokemons_attributes: [:nickname, :pokemon_id])
     end
 end

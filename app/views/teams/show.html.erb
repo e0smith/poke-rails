@@ -2,9 +2,10 @@
 <br>
 <%= button_to "Back", "../teams", method: "get" %>
 <br>
-<% @pokemon.each do |pokemon| %>
+<% @team.team_pokemons.each do |x| %>
     <li>
-        <%= link_to pokemon.name.capitalize, "/pokemons/#{pokemon.id}" %>
-        <%= link_to "Delete", team_pokemon_path(TeamPokemon.find_by(pokemon_id: pokemon.id, team_id: @team.id)), method: :delete%>
+        <%= link_to x.pokemon.name.capitalize, "/pokemons/#{x.pokemon.id}" %>
+        <%= x.nickname %>
+        <%= button_to "Delete", team_pokemon_path(x.id), method: :delete%><br>
     </li>
 <% end %>

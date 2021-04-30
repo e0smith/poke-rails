@@ -7,19 +7,11 @@
     <br>
     <br>
 <ul>
-<%= f.fields_for @team do |pokemon| %>
+<%= f.fields_for :team_pokemons do |pokemon| %>
 
-<%= collection_select(:team, :pokemon_ids, Pokemon.all, :id, :name, {:selected => @team.pokemon_ids, include_hidden: false}, {:multiple => true}) %>
-<br>
-<%= collection_select(:team, :pokemon_ids, Pokemon.all, :id, :name, {:selected => @team.pokemon_ids, include_hidden: false}, {:multiple => true}) %>
-<br>
-<%= collection_select(:team, :pokemon_ids, Pokemon.all, :id, :name, {:selected => @team.pokemon_ids, include_hidden: false}, {:multiple => true}) %>
-<br>
-<%= collection_select(:team, :pokemon_ids, Pokemon.all, :id, :name, {:selected => @team.pokemon_ids, include_hidden: false}, {:multiple => true}) %>
-<br>
-<%= collection_select(:team, :pokemon_ids, Pokemon.all, :id, :name, {:selected => @team.pokemon_ids, include_hidden: false}, {:multiple => true}) %>
-<br>
-<%= collection_select(:team, :pokemon_ids, Pokemon.all, :id, :name, {:selected => @team.pokemon_ids, include_hidden: false}, {:multiple => true}) %>
+<%= pokemon.collection_select(:pokemon_id, Pokemon.all, :id, :name) %>
+<%= pokemon.label :nickname %>
+<%= pokemon.text_field :nickname %>
 <br>
 <% end %>
 <%= f.submit %>
