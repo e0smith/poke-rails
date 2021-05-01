@@ -2,9 +2,7 @@ class PokemonsController < ApplicationController
     include PokemonsHelper
     
     def index
-     
         @pokemons = Pokemon.search(params[:name])
- 
     end
 
     def show
