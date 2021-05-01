@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   resources :team_pokemons
-  resources :pokemons, only: [:index, :show]
-  resources :teams
+  resources :pokemons, only: [:index, :show] do
+    resources :teams
+  end
   resources :users
+
+
+  
   root 'welcome#home'
 
   get '/signup', to: 'users#new'

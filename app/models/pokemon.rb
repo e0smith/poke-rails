@@ -1,7 +1,6 @@
 class Pokemon < ApplicationRecord
     has_many :team_pokemons
     has_many :teams, through: :team_pokemons
-
     def self.pokemon_data(id)
         information = {
             "name" => [],
@@ -26,4 +25,5 @@ class Pokemon < ApplicationRecord
         end
         return information
     end
+
 end

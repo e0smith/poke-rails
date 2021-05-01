@@ -1,14 +1,14 @@
 <h1>Please Create a New Team</h1>
 <br>
 <br>
-<%= form_for @team do |f|%>
+<%= form_with model: @team, url: pokemon_teams_path(current_user), method: "post" do |f|%>
+    <%= f.hidden_field :team_id, value: @team.id %>
     <%= f.label :team_name %>
     <%= f.text_field :team_name %>
     <br>
     <br>
 <ul>
 <%= f.fields_for :team_pokemons do |pokemon| %>
-
 <%= pokemon.collection_select(:pokemon_id, Pokemon.all, :id, :name) %>
 <%= pokemon.label :nickname %>
 <%= pokemon.text_field :nickname %>

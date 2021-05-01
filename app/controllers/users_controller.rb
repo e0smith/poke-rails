@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+    include UsersHelper
 
+    
     def index
+        @user = current_user
     end
 
     def new

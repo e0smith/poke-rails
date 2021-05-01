@@ -3,8 +3,8 @@ class TeamsController < ApplicationController
     include PokemonsHelper
     def index
         redirect_if_not_logged_in
-
         @team = current_user.teams
+        render :index
     end
 
     def show
@@ -14,7 +14,6 @@ class TeamsController < ApplicationController
 
     def new
         @team = Team.new
-
         6.times do 
             @team.team_pokemons.build
         end
@@ -25,7 +24,7 @@ class TeamsController < ApplicationController
         @team.user_id = current_user.id
         if @team.save
             flash[:message] = "Team Successfuly Created!"
-            redirect_to :teams
+            redirect_to pokemon_teams_path
         else
             flash[:message] = "Team failed to save!"
             render :new
