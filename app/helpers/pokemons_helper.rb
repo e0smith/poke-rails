@@ -23,8 +23,4 @@ module PokemonsHelper
         end
         return information
     end
-
-    def pokemons
-        @pokemons = Pokemon.all
-    end
 end

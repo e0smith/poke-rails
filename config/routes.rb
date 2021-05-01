@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :team_pokemons
-  resources :pokemons, only: [:index, :show] do
+  resources :pokemons do
     resources :teams
   end
   resources :users
@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   
   root 'welcome#home'
-
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   get '/index', to: 'users#index'
@@ -19,7 +18,7 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
 
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
+  get '/search', to: 'pokemons#search', as: 'search'
 
-  resources :pokemons, only: [:index, :show]
 
 end

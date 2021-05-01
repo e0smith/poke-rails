@@ -30,5 +30,9 @@
         <% end %>
 
     </ul>
+<%= form_tag pokemons_path, method: "get", html: { class: 'd-flex'} do %>
+    <%= text_field_tag(:name, "", class: "form-control me-2", placeholder: "Search for Pokemon")  %>
+    <%=  submit_tag :Search, class: "btn btn-outline-success" %>
+<% end %>
   </div>
 </nav>

@@ -2,10 +2,8 @@
 <br>
 <%= button_to "Home", "users", method: "get" %>
 <br>
-<% pokemons.each do |pokemon| %>
-    <li>
-        <%= link_to pokemon.name.capitalize, "/pokemons/#{pokemon.id}" %>
-    </li>
+<% @pokemons.each do |pokemon| %>
+<li><%= link_to(pokemon.name.capitalize, pokemon_path(pokemon.id)) %></li>
 <% end %>
 
 
