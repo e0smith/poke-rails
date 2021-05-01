@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
     def destroy
         session.clear
-        render :'welcome/home'
+        redirect_to :root
     end
 
     def omniauth
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
 
       session[:user_id] = @user.id
   
-      render 'welcome/home'
+      redirect_to pokemons_path
     end
   
     private
