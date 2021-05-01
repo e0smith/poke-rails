@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
     require 'securerandom'
-
+    include UsersHelper
     def new
+      redirect_if_logged_in
     end
 
     def create
@@ -22,6 +23,7 @@ class SessionsController < ApplicationController
     end
 
     def omniauth
+      redirect_if_logged_in
       @user = User.find_or_create_by(uid: auth['uid']) do |u|
         u.name = auth[:info][:name]
         u.email = auth[:info][:email]
@@ -32,7 +34,7 @@ class SessionsController < ApplicationController
 
       session[:user_id] = @user.id
   
-      redirect_to pokemons_path
+      redirect_to users_path
     end
   
     private

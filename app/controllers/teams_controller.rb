@@ -8,11 +8,13 @@ class TeamsController < ApplicationController
     end
 
     def show
+        redirect_if_not_logged_in
         @team = current_user.teams.find(params[:id])
         
     end
 
     def new
+        redirect_if_not_logged_in
         @team = Team.new
         6.times do 
             @team.team_pokemons.build
@@ -20,6 +22,7 @@ class TeamsController < ApplicationController
     end
 
     def create
+        redirect_if_not_logged_in
         @team = Team.new(team_params)
         @team.user_id = current_user.id
         if @team.save
@@ -33,8 +36,10 @@ class TeamsController < ApplicationController
 
     def destroy
         @team = Team.find(params[:id])
-        @team.destroy
-        redirect_back(fallback_location: root_path)
+        if @team.user == current_user
+            @team.destroy
+            redirect_back(fallback_location: root_path)
+        end
     end
 
     private

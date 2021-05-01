@@ -1,6 +1,8 @@
 class Pokemon < ApplicationRecord
     has_many :team_pokemons
     has_many :teams, through: :team_pokemons
+    scope :search, -> (query) {self.where("name LIKE ?", "%#{query}%") }
+
     def self.pokemon_data(id)
         information = {
             "name" => [],
@@ -25,5 +27,4 @@ class Pokemon < ApplicationRecord
         end
         return information
     end
-
 end
