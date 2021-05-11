@@ -1,7 +1,7 @@
 <h1> Please Create a New Team </h1>
 <br>
 <br>
-<%= form_with model: @team, url: pokemon_teams_path(current_user), method: "post" do |f|%>
+<%= form_with model: @team, url: teams_path, method: "post" do |f|%>
     <%= f.hidden_field :team_id, value: @team.id %>
     <%= f.label :team_name %>
     <%= f.text_field :team_name %>

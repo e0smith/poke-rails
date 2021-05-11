@@ -1,14 +1,16 @@
 <h1> Your Teams </h1>
 <br>
-<%= button_to "Create a new team", new_pokemon_team_path, method: "get" %>
+<%= button_to "Create a new team", new_team_path, method: "get" %>
 <br>
 <br>
 
 <% @team.each do |x| %>
-<%= form_with model: @team, url:  pokemon_team_path(current_user, x), method: "get" do |f|%>
+<%= form_with model: @team, url:  user_team_path(current_user, x), method: "get" do |f|%>
     <%= f.hidden_field :team_id, value: x.id %>
     <%= submit_tag(x.team_name, id: "button", name: "submit" ) %>
 <br>
-<%= link_to 'Delete Team', pokemon_team_path(current_user, x) , method: "delete" %>
-<% end%>
+<% if current_user.id == x.user_id %>
+<%= link_to 'Delete Team', team_path(x) , method: "delete" %>
+<% end %>
+<% end %>
 <% end %>

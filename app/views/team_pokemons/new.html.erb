@@ -1,0 +1,7 @@
+<%= fields_for :team_pokemons do |pokemon| %>
+<%= pokemon.collection_select(:pokemon_id, Pokemon.all, :id, :name) %>
+<%= pokemon.label :nickname %>
+<%= pokemon.text_field :nickname %>
+<br>
+<%= pokemon.submit %>
+<% end %>

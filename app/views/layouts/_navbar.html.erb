@@ -12,7 +12,7 @@
                 <%= link_to 'Pokedex', pokemons_path, class: 'nav-link active' %>
             </li>
             <li>
-                <%= link_to 'Teams', pokemon_teams_path(current_user.id), class: 'nav-link active' %>
+                <%= link_to 'Teams', user_teams_path(current_user.id), class: 'nav-link active' %>
             </li>
             <li>
                 <%= link_to 'Logout', logout_path, class: 'nav-link active', method: "post" %>

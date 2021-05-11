@@ -2,16 +2,16 @@ class TeamsController < ApplicationController
     include UsersHelper
     require_relative "../models/pokemon.rb"
 
-    
+
     def index
         redirect_if_not_logged_in
-        @team = current_user.teams
+        @team = User.find_by_id(params[:user_id]).teams
         render :index
     end
 
     def show
         redirect_if_not_logged_in
-        @team = current_user.teams.find(params[:id])
+        @team = Team.find(params[:id])
         
     end
 
@@ -29,7 +29,7 @@ class TeamsController < ApplicationController
         @team.user_id = current_user.id
         if @team.save
             flash[:message] = "Team Successfuly Created!"
-            redirect_to pokemon_teams_path
+            redirect_to user_teams_path(current_user)
         else
             flash[:message] = "Team failed to save!"
             render :new

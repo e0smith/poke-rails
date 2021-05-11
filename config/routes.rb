@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  resources :team_pokemons
-  resources :pokemons do
-    resources :teams
+  resources :team_pokemons, only: [:destroy]
+  resources :pokemons
+  resources :teams, only: [:new, :create, :destroy] do 
+    resources :team_pokemons, only: [:new, :create]
   end
-  resources :users
+  resources :users do
+    resources :teams, only: [:index, :show]
+  end
 
 
   
@@ -22,3 +25,7 @@ Rails.application.routes.draw do
 
 
 end
+
+
+#create /teams/new route
+# teams/id/team_pokemon/new
