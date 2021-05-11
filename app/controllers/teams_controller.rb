@@ -1,6 +1,8 @@
 class TeamsController < ApplicationController
     include UsersHelper
-    include PokemonsHelper
+    require_relative "../models/pokemon.rb"
+
+    
     def index
         redirect_if_not_logged_in
         @team = current_user.teams
