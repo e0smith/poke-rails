@@ -1,7 +1,12 @@
-<%= fields_for :team_pokemons do |pokemon| %>
+<%= form_with model: @team_pokemon, url: team_team_pokemons_path, method: "post" do |f|%>
+    <%= f.hidden_field :team_id, value: @team.id %>
+<ul>
+
+<%= f.fields_for :team_pokemon do |pokemon|  %>
 <%= pokemon.collection_select(:pokemon_id, Pokemon.all, :id, :name) %>
 <%= pokemon.label :nickname %>
 <%= pokemon.text_field :nickname %>
 <br>
-<%= pokemon.submit %>
+<% end %>
+<%= f.submit %>
 <% end %>

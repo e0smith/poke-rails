@@ -2,32 +2,27 @@ class TeamPokemonsController < ApplicationController
     include UsersHelper
     require_relative "../models/pokemon.rb"
     def new
-        poke_count = []
         @team = current_user.teams.find_by(params[:id])
-        @team.team_pokemons.each do |x|
-            poke_count << x.pokemon_id
-        end
-        6.times do 
-            @team.team_pokemons.build
-    #     i = 0
-    #     loop do 
-    #         i +=1
-    #         6. times do @teampokemon.build
-    #         if i + poke_count.length == 6
-    #             break
-    #         end
+        if @team.team_pokemons.count < 6
+            @teampokemon = @team.team_pokemons.build
+        else
+            flash[:message] = "Max amount of Pokemon on team!"
+            redirect_back(fallback_location: root_path)
         end
     end
 
     def create
-        @team = Team.find_by_id
-        @team.user_id = current_user.id
-        if @team.save
-            flash[:message] = "Pokemon successfully added!"
-            redirect_to user_teams_path(current_user)
-        else
-            flash[:message] = "Pokemon failed to add!"
-            render :new
+        @team = current_user.teams.find_by(params[:id])
+        if @team
+            x = @team.team_pokemons.build(teampokemon_params)
+            if x.save
+                @team.team_pokemons << x
+                flash[:message] = "Pokemon successfully added!"
+                redirect_to user_teams_path(current_user)
+            else
+                flash[:message] = "Pokemon failed to add!"
+                render :new
+            end
         end
     end
 
@@ -42,7 +37,8 @@ class TeamPokemonsController < ApplicationController
     end
 
     private
+
     def teampokemon_params
-        params.require(:team_pokemons).permit(:nickname, :pokemon_id)
+        params.require(:team_pokemon).permit(:team_id, :nickname, :pokemon_id)
     end 
 end
