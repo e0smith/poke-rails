@@ -8,8 +8,6 @@ Rails.application.routes.draw do
     resources :teams, only: [:index, :show]
   end
 
-
-  
   root 'welcome#home'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
@@ -23,9 +21,4 @@ Rails.application.routes.draw do
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
   get '/search', to: 'pokemons#search', as: 'search'
 
-
 end
-
-
-#create /teams/new route
-# teams/id/team_pokemon/new

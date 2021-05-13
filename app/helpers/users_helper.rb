@@ -16,4 +16,10 @@ module UsersHelper
     def redirect_if_logged_in
         redirect_to users_path if logged_in?
     end
+
+    def user_verify 
+        if current_user != User.find_by_id(session[:user_id])
+            redirect_to pokemons_path
+        end
+    end
 end

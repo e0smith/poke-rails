@@ -6,7 +6,11 @@
     <li>
         <%= link_to x.pokemon.name.capitalize, "/pokemons/#{x.pokemon.id}" %>
         <%= x.nickname %>
+        <% if current_user.id == @team.user_id %>
         <%= button_to "Delete", team_pokemon_path(x.id), method: :delete%><br>
     </li>
 <% end %>
+<% end %>
+<% if current_user.id == @team.user_id %>
 <%= link_to "Add new Pokemon", new_team_team_pokemon_path(params[:id]) %>
+<% end %>

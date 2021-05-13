@@ -1,18 +1,26 @@
 class TeamsController < ApplicationController
     include UsersHelper
     require_relative "../models/pokemon.rb"
-
+    before_action(:user_verify)
 
     def index
         redirect_if_not_logged_in
-        @team = User.find_by_id(params[:user_id]).teams
-        render :index
+        if User.find_by_id(params[:user_id]) == nil
+            flash[:message] = "User could not be found."
+            redirect_to user_teams_path(current_user)
+        else
+            @team = User.find_by_id(params[:user_id]).teams
+            render :index
+        end
     end
 
     def show
         redirect_if_not_logged_in
-        @team = Team.find(params[:id])
-        
+        @team = Team.find_by(id: params[:id])
+        if @team.blank?
+            flash[:message] = "Team could not be found."
+            redirect_to user_teams_path(current_user)
+        end
     end
 
     def new

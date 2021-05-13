@@ -1,7 +1,25 @@
 class TeamPokemonsController < ApplicationController
     include UsersHelper
     require_relative "../models/pokemon.rb"
+    before_action(:user_verify)
     def new
+        @user = current_user
+        @team = Team.find_by(id: params[:team_id])
+        # binding.pry
+        if @team && @team.user_id == @user.id
+            if @team.team_pokemons.count < 6
+                @teampokemon = @team.team_pokemons.build
+            else
+                flash[:message] = "Max amount of Pokemon on team!"
+                redirect_back(fallback_location: root_path)
+            end
+        else
+            flash[:message] = "This is not your team!"
+            redirect_to user_teams_path(current_user)
+        end
+    end
+
+    def create
         @team = current_user.teams.find_by(params[:id])
         if @team.team_pokemons.count < 6
             @teampokemon = @team.team_pokemons.build
@@ -9,10 +27,6 @@ class TeamPokemonsController < ApplicationController
             flash[:message] = "Max amount of Pokemon on team!"
             redirect_back(fallback_location: root_path)
         end
-    end
-
-    def create
-        @team = current_user.teams.find_by(params[:id])
         if @team
             x = @team.team_pokemons.build(teampokemon_params)
             if x.save
@@ -40,5 +54,9 @@ class TeamPokemonsController < ApplicationController
 
     def teampokemon_params
         params.require(:team_pokemon).permit(:team_id, :nickname, :pokemon_id)
-    end 
+    end
+
+    def redirect_to_root
+        redirect_to root_path
+    end
 end
